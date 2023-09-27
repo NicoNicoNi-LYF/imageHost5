@@ -1,0 +1,101 @@
+
+
+<!--https://www.cnblogs.com/xdp-gacl/p/5193279.html-->
+<!DOCTYPE html>
+<html xmlns:style="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>串口调试工具</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/serial.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/websocket.js"></script>
+    <style>
+        html {
+            overflow: auto;
+        }
+        body {
+            margin: 0;
+        }
+        .bitrate {
+            width: 80px;
+        }
+        .log {
+            width: 100%;
+            height: 300px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    串口:
+    <select name="serial"></select>
+    <button class="refreshBtn">刷新</button>
+    波特率:
+    <input type="text" class="bitrate" name="bitrate" value="9600" />
+    校验位:
+    <select name="parityBit">
+        <option value="no">无校验</option>
+        <option value="odd">奇校验</option>
+        <option value="even">偶校验</option>
+    </select>
+    停止位:
+    <select name="stopBits">
+        <option value="one">1位</option>
+        <option value="two">2位</option>
+    </select>
+
+    <button class="connectBtn">打开串口</button>
+    <button class="disconnectBtn">关闭串口</button>
+
+    <input type="text" name="sendHex">
+
+    <button class="sendBtn">发送</button>
+
+    <button class="cancelBtn">清空log</button>
+
+    <div class="message">&nbsp;</div>
+    <div class="log"></div>
+</div>
+
+
+<!-------------------------------------------------------------------------->
+
+
+<style type="text/css">
+    #message
+    {
+        /*background-color:#00FFFF;*/
+        width:100%;
+        height:500px;
+        overflow: scroll;
+    }
+    #lastMessage2{
+        width: 60%;
+        border_color: "white";
+    }
+</style>
+<span >WebSocket</span>
+<!--<br/><input id="text" type="text"/>-->
+<!--<button onclick="send()">发送消息</button>-->
+<hr/>
+<button onclick="closeWebSocket()">关闭WebSocket连接</button>
+<hr/>
+
+<p id="lastMessage"></p>
+<span>最近一条消息：</span><input type="text" value="" id="lastMessage2" readonly />
+
+<hr/>
+<div id="message" > </div>
+<!--js放在serial.js  放在本地的话似乎在app中无法无法生效-->
+
+
+
+<!--<iframe src="http://localhost:8080/motor2/ws.jsp/" width="800px" height="500px"></iframe>-->
+<!--<iframe src="http://localhost:8080/motor2/serialAssistant/index3.html/" width="800px" height="500px"></iframe>-->
+<!--<iframe src="ws://localhost:8080/" width="800px" height="500px"></iframe>-->
+</body>
+</html>

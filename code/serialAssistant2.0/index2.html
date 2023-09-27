@@ -1,0 +1,152 @@
+<!--https://www.cnblogs.com/xdp-gacl/p/5193279.html-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>串口调试工具</title>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/serial.js"></script>
+    <script src="js/index.js"></script>
+    <!--    <script src="js/websocket.js"></script>-->
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <style>
+        html {
+            overflow: auto;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .bitrate {
+            width: 80px;
+        }
+
+        .log {
+            width: 100%;
+            height: 150px;
+            box-sizing: border-box;
+            border: 1px solid #cccccc;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="root">
+    <fieldset>
+        串口:
+        <select name="serial"></select>
+        <button class="refreshBtn">刷新</button>
+        波特率:
+        <input type="text" class="bitrate" name="bitrate" value="9600"/>
+        校验位:
+        <select name="parityBit">
+            <option value="no">无校验</option>
+            <option value="odd">奇校验</option>
+            <option value="even">偶校验</option>
+        </select>
+        停止位:
+        <select name="stopBits">
+            <option value="one">1位</option>
+            <option value="two">2位</option>
+        </select>
+
+        <button class="connectBtn">打开串口</button>
+        <button class="disconnectBtn">关闭串口</button>
+
+        <input type="text" name="sendHex">
+
+        <button class="sendBtn">发送</button>
+
+        <button class="cancelBtn">清空log</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Log</legend>
+        <div class="message">&nbsp;</div>
+        <div class="log"></div>
+    </fieldset>
+
+</div>
+
+
+<!-------------------------------------------------------------------------->
+
+<!--
+
+<style type="text/css">
+    #message
+    {
+        /*background-color:#00FFFF;*/
+        width:100%;
+        height:500px;
+        overflow: scroll;
+    }
+    #lastMessage2{
+        width: 60%;
+        border_color: "white";
+    }
+</style>
+<span >WebSocket</span>
+&lt;!&ndash;<br/><input id="text" type="text"/>&ndash;&gt;
+&lt;!&ndash;<button onclick="send()">发送消息</button>&ndash;&gt;
+<hr/>
+<button onclick="closeWebSocket()">关闭WebSocket连接</button>
+<hr/>
+
+<p id="lastMessage"></p>
+<span>最近一条消息：</span><input type="text" value="" id="lastMessage2" readonly />
+
+<hr/>
+<div id="message" > </div>
+-->
+
+<!--js放在serial.js  放在本地的话似乎在app中无法无法生效-->
+
+
+<!--Web Socket客户端-->
+<div id="content">
+    <fieldset>
+        <legend>Web Socket</legend>
+        <div>
+            <label>服务器URL:</label>
+            <input type="text" id="serverUrl" value="ws://39.106.195.123:8080/motor2/websocket"/>
+            <button id="connectButton">Open</button>
+            <button id="disconnectButton">Close</button>
+        </div>
+        <div>
+            <label>Status:</label>
+            <span id="connectionStatus">CLOSED</span>
+        </div>
+    </fieldset>
+
+    <fieldset id="requestArea">
+        <legend>Request</legend>
+        <div>
+            <textarea id="sendMessage" disabled="disabled"></textarea>
+        </div>
+        <div>
+            <button id="sendButton" disabled="disabled">Send</button>
+            [Shortcut] Ctr + Enter
+        </div>
+    </fieldset>
+
+    <fieldset id="lastMessages">
+        <legend>Last Message</legend>
+        <textarea id="lastMessage" disabled="disabled"></textarea>
+    </fieldset>
+
+    <fieldset id="messageArea">
+        <legend>Message Log
+            <button id="clearMessage">Clear</button>
+        </legend>
+        <div id="messages"></div>
+    </fieldset>
+</div>
+
+</body>
+</html>
